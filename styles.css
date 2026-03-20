@@ -598,6 +598,7 @@ footer .w{flex-wrap:wrap;gap:12px}
     .stl{font-size:18pt}
     .rv{opacity:1;transform:none}
     .faq-a{max-height:none!important}
+    footer::after{content:'pavelte382@gmail.com | +7 (707) 244-87-45 | t.me/xCYRAXx1';display:block;font-size:10pt;color:#666;margin-top:8px;text-align:center}
 }
 
 /* ══════ MOBILE ══════ */
