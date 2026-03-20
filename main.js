@@ -308,19 +308,7 @@ function runWaDemo(){
 const waObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){runWaDemo();waObs.disconnect()}})},{threshold:.3});
 const waEl=$('waMockup');if(waEl)waObs.observe(waEl);
 
-/* ══════ FAQ KEYBOARD A11Y ══════ */
-Q('.faq-q').forEach(q=>{
-    q.setAttribute('tabindex','0');
-    q.setAttribute('role','button');
-    q.setAttribute('aria-expanded','false');
-    q.addEventListener('keydown',e=>{
-        if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();
-        q.setAttribute('aria-expanded',q.parentElement.classList.contains('open')?'true':'false')}
-    });
-    q.addEventListener('click',()=>{
-        q.setAttribute('aria-expanded',q.parentElement.classList.contains('open')?'true':'false');
-    });
-});
+/* FAQ A11Y attributes set in HTML, handlers in FAQ DELEGATION section below */
 
 /* ══════ MULTI-STEP FORM ══════ */
 let msfStep=1,msfData={};
@@ -487,7 +475,8 @@ D.body.appendChild(msg);setTimeout(()=>msg.remove(),3000)}
 Q('.faq-q').forEach(q=>{
     q.addEventListener('click',()=>{
         q.parentElement.classList.toggle('open');
-        q.setAttribute('aria-expanded',q.parentElement.classList.contains('open'));
+        const isOpen=q.parentElement.classList.contains('open');
+        q.setAttribute('aria-expanded',String(isOpen));
     });
     q.addEventListener('keydown',e=>{
         if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click()}

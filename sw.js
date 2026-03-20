@@ -1,7 +1,9 @@
-const CACHE_NAME = 'paveltyo-v1';
+const CACHE_NAME = 'paveltyo-v2';
 const ASSETS = [
   '/',
-  '/PAVEL_TYO_CV.html',
+  '/index.html',
+  '/styles.css',
+  '/main.js',
   '/PAVEL_TYO_CV.pdf',
   '/manifest.json'
 ];

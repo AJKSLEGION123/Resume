@@ -5,6 +5,19 @@
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ══════ THEMES ══════ */
+/* Design Tokens:
+   --bg/--bg2   Background primary/secondary
+   --card/--card-h  Card surface / hover
+   --nav-bg     Navigation backdrop
+   --accent     Primary brand color (indigo)
+   --accent-l   Lighter accent variant
+   --ag/--ags   Accent glow / strong
+   --t1/--t2/--t3  Text primary / secondary / tertiary (≥4.5:1 contrast)
+   --bd/--bdl   Border / lighter border
+   --tbg/--tc   Tag background / color
+   --grn/--gg   Success green / glow
+   --sh         Box shadow
+*/
 [data-theme="dark"]{--bg:#08080d;--bg2:#0c0c14;--card:#121219;--card-h:#18181f;--nav-bg:rgba(8,8,13,.8);--accent:#6366f1;--accent-l:#818cf8;--ag:rgba(99,102,241,.1);--ags:rgba(99,102,241,.2);--t1:#eaeaf0;--t2:#9090a8;--t3:#7a7a98;--bd:#1a1a28;--bdl:#262638;--tbg:rgba(99,102,241,.08);--tc:#a5b4fc;--grn:#34d399;--gg:rgba(52,211,153,.08);--sh:0 2px 16px rgba(0,0,0,.2);--preloader-bg:#08080d}
 [data-theme="light"]{--bg:#f7f7fb;--bg2:#eeeef5;--card:#ffffff;--card-h:#f8f8ff;--nav-bg:rgba(247,247,251,.85);--accent:#4f46e5;--accent-l:#6366f1;--ag:rgba(79,70,229,.06);--ags:rgba(79,70,229,.12);--t1:#111118;--t2:#555570;--t3:#5e5e78;--bd:#dcdce8;--bdl:#ccccd8;--tbg:rgba(79,70,229,.05);--tc:#4f46e5;--grn:#059669;--gg:rgba(5,150,105,.05);--sh:0 1px 8px rgba(0,0,0,.04);--preloader-bg:#f7f7fb}
 
