@@ -233,6 +233,7 @@ $('cmdInput').onkeydown=e=>{
     else if(e.key==='ArrowUp'){e.preventDefault();cmdIdx=Math.max(cmdIdx-1,0)}
     else if(e.key==='Enter'){e.preventDefault();execCmd(cmdIdx,$('cmdInput').value)}
     else if(e.key==='Escape'){closeCmd();return}
+    else if(e.key==='Tab'){e.preventDefault();return}
     else return;
     items.forEach((it,i)=>it.classList.toggle('active',i===cmdIdx));
     items[cmdIdx]?.scrollIntoView({block:'nearest'});
@@ -425,7 +426,13 @@ function calcRoi(){
     $('roiTimeR').setAttribute('aria-valuenow',time);
     $('roiRateR').setAttribute('aria-valuenow',rate);
     const save=Math.round(leads*time/60*rate*0.6);
-    $('roiSave').textContent='$'+save.toLocaleString();
+    /* Animated count-up */
+    const el=$('roiSave'),prev=+(el.dataset.val||0);
+    el.dataset.val=save;
+    if(Math.abs(save-prev)>5){
+        const start=performance.now(),dur=400;
+        (function tick(now){const p=Math.min((now-start)/dur,1);const v=Math.round(prev+(save-prev)*p);el.textContent='$'+v.toLocaleString();if(p<1)requestAnimationFrame(tick)})(start);
+    }else{el.textContent='$'+save.toLocaleString()}
 }
 ['roiLeadsR','roiTimeR','roiRateR'].forEach(id=>{
     $(id).addEventListener('input',calcRoi);
