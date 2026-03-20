@@ -65,7 +65,7 @@ if(st){setTheme(st)}
 else if(matchMedia('(prefers-color-scheme:light)').matches){setTheme('light')}
 const sl=localStorage.getItem('ptyo_lang');
 if(sl){lang=sl;setLang(sl)}
-else{const bl=(navigator.language||'').slice(0,2);if(bl==='en'){setLang('en')}}
+else{const urlLang=new URLSearchParams(location.search).get('lang');if(urlLang==='en'){setLang('en')}else{const bl=(navigator.language||'').slice(0,2);if(bl==='en'){setLang('en')}}}
 }catch(e){}
 /* Listen for OS theme changes */
 matchMedia('(prefers-color-scheme:light)').addEventListener('change',e=>{if(!localStorage.getItem('ptyo_theme')){setTheme(e.matches?'light':'dark')}});
@@ -343,12 +343,13 @@ $('msfSubmit').onclick=()=>{
     const contact=$('msfContact').value.trim();
     const msg=$('msfMsg').value.trim();
     if(!contact){$('msfContact').style.borderColor='var(--accent)';$('msfContact').focus();setTimeout(()=>$('msfContact').style.borderColor='',2000);return}
+    $('msfSubmit').disabled=true;$('msfSubmit').textContent='...';
     const text=encodeURIComponent('Заявка с сайта:\nТип: '+(msfData.type||'-')+'\nБюджет: '+(msfData.budget||'-')+'\nСрок: '+(msfData.timeline||'-')+'\n'+(name?'Имя: '+name+'\n':'')+(contact?'Контакт: '+contact+'\n':'')+(msg?'Задача: '+msg:''));
     window.open('https://t.me/xCYRAXx1?text='+text,'_blank');
     Q('.msf-step').forEach(s=>s.classList.remove('active'));
     $('msfSuccess').classList.add('show');
     announce(L[lang].qf_ok||'Sent');
-    setTimeout(()=>{$('msfSuccess').classList.remove('show');msfStep=1;$('ms1').classList.add('active');updateMsfBars();msfData={};Q('.msf-opt').forEach(o=>o.classList.remove('selected'));$('msfName').value='';$('msfContact').value='';$('msfMsg').value=''},5000);
+    setTimeout(()=>{$('msfSuccess').classList.remove('show');msfStep=1;$('ms1').classList.add('active');updateMsfBars();msfData={};Q('.msf-opt').forEach(o=>o.classList.remove('selected'));$('msfName').value='';$('msfContact').value='';$('msfMsg').value='';$('msfSubmit').disabled=false;$('msfSubmit').textContent=L[lang].msf_send||'Отправить заявку'},5000);
 };
 Q('[data-msf-select]').forEach(el=>el.addEventListener('click',()=>msfSelect(el)));
 Q('[data-msf-back]').forEach(el=>el.addEventListener('click',()=>msfBack()));
