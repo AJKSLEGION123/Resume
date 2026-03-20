@@ -421,8 +421,12 @@ function announce(msg){const el=$('ariaLive');if(el){el.textContent='';setTimeou
 
 /* ══════ EMAIL COPY TOAST ══════ */
 $('emailLink').addEventListener('click',e=>{
-    if(navigator.clipboard){e.preventDefault();navigator.clipboard.writeText('pavelte382@gmail.com').then(()=>{showToast(L[lang].copied)})}
+    e.preventDefault();
+    const em='pavelte382'+'@'+'gmail.com';
+    if(navigator.clipboard){navigator.clipboard.writeText(em).then(()=>{showToast(L[lang].copied||'Email copied')}).catch(()=>{window.location.href='mai'+'lto:'+em})}
+    else{window.location.href='mai'+'lto:'+em}
 });
+const fe=$('footerEmail');if(fe){fe.addEventListener('click',e=>{e.preventDefault();window.location.href='mai'+'lto:'+'pavelte382'+'@'+'gmail.com'})}
 function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('vis');setTimeout(()=>t.classList.remove('vis'),2000)}
 
 /* Quick form replaced by multi-step form */

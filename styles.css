@@ -125,7 +125,7 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:60px
 .btn svg{width:16px;height:16px;flex-shrink:0}
 
 /* ══════ SECTIONS ══════ */
-section{padding:100px 0;position:relative;z-index:1;background:var(--bg);transition:background .4s}
+section{padding:100px 0;position:relative;z-index:1;background:var(--bg);transition:background .4s;scroll-margin-top:68px}
 section.hero{background:transparent}
 section.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--bg));pointer-events:none;z-index:0}
 section:nth-of-type(even){background:var(--bg2)}
@@ -544,6 +544,9 @@ footer .w{flex-wrap:wrap;gap:12px}
 }
 
 /* ══════ HIGH CONTRAST ══════ */
+@media(prefers-contrast:more){
+    :root{--t2:#b0b0c8;--t3:#9090a8;--bd:#303048;--bdl:#404060}
+}
 @media(forced-colors:active){
     .btn,.price-cta,.qf-submit,.book-call{border:2px solid ButtonText}
     .tag,.case-result,.ti-ach,.pbadge,.guar{border:1px solid ButtonText}
