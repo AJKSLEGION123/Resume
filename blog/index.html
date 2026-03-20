@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог — Pavel Tyo | AI Engineer</title>
+<meta name="description" content="Статьи о том, как строить AI-агентов, автоматизировать бизнес-процессы и запускать MVP за 1-2 дня.">
+<meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.blog-hero{padding:120px 0 60px;text-align:center}
+.blog-hero h1{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-2px;margin-bottom:12px}
+.blog-hero p{color:var(--t2);font-size:16px;max-width:500px;margin:0 auto}
+.posts{display:grid;gap:16px;max-width:700px;margin:0 auto;padding:0 24px 80px}
+.post-card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:28px;transition:background .3s,border-color .3s,transform .3s;text-decoration:none;color:inherit;display:block}
+.post-card:hover{background:var(--card-h);border-color:var(--bdl);transform:translateY(-3px)}
+.post-card h2{font-size:18px;font-weight:600;letter-spacing:-.3px;margin-bottom:8px;color:var(--t1)}
+.post-card p{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:12px}
+.post-meta{display:flex;gap:12px;font-size:12px;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.post-tag{background:var(--tbg);color:var(--tc);padding:2px 8px;border-radius:4px;font-size:11px}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--t2);text-decoration:none;font-size:14px;padding:16px 24px;transition:color .2s}
+.back-link:hover{color:var(--accent-l)}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<a href="../" class="back-link">← Pavel Tyo</a>
+
+<section class="blog-hero">
+<div class="w">
+<h1>Блог</h1>
+<p>Кейсы, разборы, ошибки и промпты. Как строю AI-агентов и автоматизации.</p>
+</div>
+</section>
+
+<div class="posts">
+
+<a href="ai-agent-whatsapp.html" class="post-card">
+<h2>Как я построил AI-менеджера для WhatsApp за 2 недели</h2>
+<p>Пошаговый разбор: от брифа до 60% заявок без оператора. GPT-4o + 1С + Make + WhatsApp Business API.</p>
+<div class="post-meta"><span>20 марта 2026</span><span class="post-tag">AI-агенты</span><span class="post-tag">Кейс</span></div>
+</a>
+
+<a href="automation-amocrm-1c.html" class="post-card">
+<h2>amoCRM + 1С: как убрать 80% ручного ввода</h2>
+<p>Автоматизация синхронизации CRM и учётной системы через Make/n8n. Реальные цифры и подводные камни.</p>
+<div class="post-meta"><span>15 марта 2026</span><span class="post-tag">Автоматизация</span><span class="post-tag">Кейс</span></div>
+</a>
+
+<a href="mvp-1-day.html" class="post-card">
+<h2>MVP за 1 день: мой конвейер лендингов</h2>
+<p>8 лендингов в неделю. Lovable + Cursor + Claude Code. Как vibe-coding изменил мой workflow.</p>
+<div class="post-meta"><span>10 марта 2026</span><span class="post-tag">Vibe-Coding</span><span class="post-tag">Productivity</span></div>
+</a>
+
+</div>
+
+<script>
+try{const t=localStorage.getItem('ptyo_theme');if(t)document.documentElement.setAttribute('data-theme',t);
+else if(matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.setAttribute('data-theme','light')}catch(e){}
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как я построил AI-менеджера для WhatsApp за 2 недели — Pavel Tyo</title>
+<meta name="description" content="Пошаговый разбор: от брифа до 60% заявок без оператора. GPT-4o, 1С, Make, WhatsApp Business API.">
+<meta property="og:title" content="AI-менеджер для WhatsApp за 2 недели">
+<meta property="og:description" content="60% заявок без оператора. GPT-4o + 1С + Make.">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.article{max-width:700px;margin:0 auto;padding:100px 24px 80px}
+.article h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:16px}
+.article-meta{display:flex;gap:12px;align-items:center;font-size:13px;color:var(--t3);margin-bottom:32px;font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.article-tag{background:var(--tbg);color:var(--tc);padding:3px 10px;border-radius:6px;font-size:11px}
+.article h2{font-size:22px;font-weight:700;letter-spacing:-.5px;margin:40px 0 16px;color:var(--t1)}
+.article h3{font-size:17px;font-weight:600;margin:28px 0 12px;color:var(--t1)}
+.article p{font-size:16px;color:var(--t2);line-height:1.8;margin-bottom:16px}
+.article ul,.article ol{color:var(--t2);font-size:15px;line-height:1.8;margin:0 0 16px 24px}
+.article li{margin-bottom:6px}
+.article strong{color:var(--t1);font-weight:600}
+.article code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--tbg);color:var(--tc);padding:2px 6px;border-radius:4px}
+.article blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:var(--ag);border-radius:0 10px 10px 0;font-style:italic;color:var(--t2)}
+.result-box{background:var(--gg);border:1px solid rgba(52,211,153,.2);border-radius:14px;padding:20px 24px;margin:24px 0}
+.result-box h4{color:var(--grn);font-size:14px;font-weight:600;margin-bottom:8px}
+.result-box p{font-size:14px;margin-bottom:4px}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--t2);text-decoration:none;font-size:14px;padding:16px 24px;position:fixed;top:0;left:0;z-index:100;transition:color .2s}
+.back-link:hover{color:var(--accent-l)}
+.article-cta{margin-top:48px;padding:28px;background:var(--card);border:1px solid var(--bd);border-radius:16px;text-align:center}
+.article-cta h3{margin:0 0 8px;font-size:18px}
+.article-cta p{margin-bottom:16px;font-size:14px}
+.article-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s,transform .2s}
+.article-cta a:hover{background:var(--accent-l);transform:translateY(-2px)}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Как я построил AI-менеджера для WhatsApp за 2 недели","author":{"@type":"Person","name":"Pavel Tyo"},"datePublished":"2026-03-20","description":"Пошаговый разбор: от брифа до 60% заявок без оператора."}</script>
+</head>
+<body>
+<a href="./" class="back-link">← Блог</a>
+
+<article class="article">
+<h1>Как я построил AI-менеджера для WhatsApp за 2 недели</h1>
+<div class="article-meta">
+<span>20 марта 2026</span>
+<span>10 мин чтения</span>
+<span class="article-tag">AI-агенты</span>
+<span class="article-tag">Кейс</span>
+</div>
+
+<p>Клиент — компания в HoReCa B2B. 200+ заявок в месяц через WhatsApp. 3 менеджера копируют данные из чатов в 1С. Среднее время ответа: <strong>15 минут</strong>. Задача: автоматизировать.</p>
+
+<h2>Проблема</h2>
+<p>Менеджеры тратили 80% времени на рутину:</p>
+<ul>
+<li>Копировали заявки из WhatsApp в Excel</li>
+<li>Проверяли остатки в 1С вручную</li>
+<li>Формировали КП в Word и отправляли обратно</li>
+<li>Среднее время ответа: 15 минут</li>
+</ul>
+
+<blockquote>Клиент терял заявки, потому что конкуренты отвечали быстрее.</blockquote>
+
+<h2>Архитектура решения</h2>
+<p>Я собрал систему из 4 компонентов:</p>
+<ol>
+<li><strong>WhatsApp Business API</strong> — приём входящих сообщений через webhook</li>
+<li><strong>Make (Integromat)</strong> — маршрутизация и оркестрация</li>
+<li><strong>GPT-4o API</strong> — понимание запроса, извлечение параметров (товар, количество, сроки)</li>
+<li><strong>1С REST API</strong> — проверка остатков, формирование КП, создание счёта</li>
+</ol>
+
+<h3>Как работает</h3>
+<p>Клиент пишет в WhatsApp: <code>Нужно 50 кг курицы и 30 кг говядины</code></p>
+<p>AI-агент:</p>
+<ol>
+<li>Распознаёт товары и количество через GPT-4o</li>
+<li>Проверяет остатки в 1С через API</li>
+<li>Формирует КП с ценами и условиями</li>
+<li>Отправляет клиенту в WhatsApp за <strong>10 секунд</strong></li>
+</ol>
+
+<h2>Технические решения</h2>
+
+<h3>Промпт для GPT-4o</h3>
+<p>Ключевой момент — structured output. GPT возвращает JSON с полями <code>items[]</code>, <code>quantity</code>, <code>unit</code>. Это позволяет автоматически маппить на номенклатуру 1С.</p>
+
+<h3>Обработка ошибок</h3>
+<p>Если GPT не может распарсить запрос — бот уточняет: "Уточните, пожалуйста, какой товар и в каком количестве вам нужен?" Если 3 попытки не помогли — переводит на живого менеджера.</p>
+
+<h3>Интеграция с 1С</h3>
+<p>1С выставляет REST API через HTTP-сервис. Make вызывает его для:</p>
+<ul>
+<li>Проверки остатков по SKU</li>
+<li>Создания коммерческого предложения</li>
+<li>Автоматического создания счёта</li>
+</ul>
+
+<div class="result-box">
+<h4>Результаты за первый месяц</h4>
+<p><strong>60%</strong> заявок обрабатываются полностью без оператора</p>
+<p><strong>15 мин → 10 сек</strong> — время ответа клиенту</p>
+<p><strong>0 пропущенных заявок</strong> — бот работает 24/7</p>
+<p><strong>Окупаемость за 1 месяц</strong> — экономия на 1.5 операторах</p>
+</div>
+
+<h2>Уроки</h2>
+<ol>
+<li><strong>Начинай с MVP</strong> — первая версия работала через 5 дней. Остальные 9 дней ушли на edge cases и тестирование.</li>
+<li><strong>Structured output &gt; свободный текст</strong> — GPT должен возвращать JSON, а не прозу.</li>
+<li><strong>Fallback на человека обязателен</strong> — AI не заменяет менеджера, а разгружает его.</li>
+<li><strong>Мониторинг с первого дня</strong> — логирую каждый запрос и ответ для аналитики.</li>
+</ol>
+
+<h2>Стек</h2>
+<p><code>GPT-4o API</code> <code>WhatsApp Business API</code> <code>Make (Integromat)</code> <code>1С REST API</code> <code>n8n (бэкап)</code></p>
+
+<div class="article-cta">
+<h3>Нужен AI-агент для вашего бизнеса?</h3>
+<p>Разберу задачу за 30 минут. Бесплатно.</p>
+<a href="https://t.me/xCYRAXx1" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+</div>
+</article>
+
+<script>
+try{const t=localStorage.getItem('ptyo_theme');if(t)document.documentElement.setAttribute('data-theme',t);
+else if(matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.setAttribute('data-theme','light')}catch(e){}
+</script>
+</body>
+</html>

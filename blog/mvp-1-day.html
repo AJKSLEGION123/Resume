@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVP за 1 день: мой конвейер лендингов — Pavel Tyo</title>
+<meta name="description" content="8 лендингов в неделю. Lovable + Cursor + Claude Code. Как vibe-coding изменил мой workflow.">
+<meta property="og:title" content="MVP за 1 день: конвейер лендингов">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.article{max-width:700px;margin:0 auto;padding:100px 24px 80px}
+.article h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:16px}
+.article-meta{display:flex;gap:12px;align-items:center;font-size:13px;color:var(--t3);margin-bottom:32px;font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.article-tag{background:var(--tbg);color:var(--tc);padding:3px 10px;border-radius:6px;font-size:11px}
+.article h2{font-size:22px;font-weight:700;letter-spacing:-.5px;margin:40px 0 16px;color:var(--t1)}
+.article h3{font-size:17px;font-weight:600;margin:28px 0 12px;color:var(--t1)}
+.article p{font-size:16px;color:var(--t2);line-height:1.8;margin-bottom:16px}
+.article ul,.article ol{color:var(--t2);font-size:15px;line-height:1.8;margin:0 0 16px 24px}
+.article li{margin-bottom:6px}
+.article strong{color:var(--t1);font-weight:600}
+.article code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--tbg);color:var(--tc);padding:2px 6px;border-radius:4px}
+.article blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:var(--ag);border-radius:0 10px 10px 0;font-style:italic;color:var(--t2)}
+.result-box{background:var(--gg);border:1px solid rgba(52,211,153,.2);border-radius:14px;padding:20px 24px;margin:24px 0}
+.result-box h4{color:var(--grn);font-size:14px;font-weight:600;margin-bottom:8px}
+.result-box p{font-size:14px;margin-bottom:4px}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--t2);text-decoration:none;font-size:14px;padding:16px 24px;position:fixed;top:0;left:0;z-index:100;transition:color .2s}
+.back-link:hover{color:var(--accent-l)}
+.article-cta{margin-top:48px;padding:28px;background:var(--card);border:1px solid var(--bd);border-radius:16px;text-align:center}
+.article-cta h3{margin:0 0 8px;font-size:18px}
+.article-cta p{margin-bottom:16px;font-size:14px}
+.article-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s,transform .2s}
+.article-cta a:hover{background:var(--accent-l);transform:translateY(-2px)}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:20px 0}
+.tool-card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;text-align:center}
+.tool-card .tool-icon{font-size:28px;margin-bottom:8px}
+.tool-card h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.tool-card p{font-size:12px;color:var(--t3);margin:0}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"MVP за 1 день: мой конвейер лендингов","author":{"@type":"Person","name":"Pavel Tyo"},"datePublished":"2026-03-10","description":"8 лендингов в неделю с vibe-coding."}</script>
+</head>
+<body>
+<a href="./" class="back-link">← Блог</a>
+
+<article class="article">
+<h1>MVP за 1 день: мой конвейер лендингов</h1>
+<div class="article-meta">
+<span>10 марта 2026</span>
+<span>6 мин чтения</span>
+<span class="article-tag">Vibe-Coding</span>
+<span class="article-tag">Productivity</span>
+</div>
+
+<p>Год назад один лендинг занимал 3-5 дней. Сейчас — <strong>1 день</strong>. 8 штук в неделю. Рассказываю как.</p>
+
+<h2>Мой стек vibe-coding</h2>
+
+<div class="tool-grid">
+<div class="tool-card"><div class="tool-icon">🚀</div><h4>Lovable</h4><p>Генерация базового UI из промпта</p></div>
+<div class="tool-card"><div class="tool-icon">🎯</div><h4>Cursor</h4><p>AI-редактор для доработки</p></div>
+<div class="tool-card"><div class="tool-icon">⚡</div><h4>Claude Code</h4><p>CLI для рефакторинга и тестов</p></div>
+<div class="tool-card"><div class="tool-icon">🎨</div><h4>v0 by Vercel</h4><p>Компоненты и UI-блоки</p></div>
+</div>
+
+<h2>Процесс: от идеи до деплоя за 1 день</h2>
+
+<h3>09:00 — Бриф (30 мин)</h3>
+<p>Созвон с клиентом. Фиксирую: целевая аудитория, УТП, цвета, конкуренты. Записываю в Notion.</p>
+
+<h3>09:30 — Генерация в Lovable (1 час)</h3>
+<p>Загружаю бриф в Lovable. Получаю рабочий лендинг с секциями: hero, features, testimonials, pricing, CTA. 80% структуры готово.</p>
+
+<h3>10:30 — Доработка в Cursor (2 часа)</h3>
+<p>Кастомизирую: анимации, адаптив, SEO мета-теги, типографика. Cursor с Copilot ускоряет в 3 раза.</p>
+
+<h3>12:30 — Контент (1 час)</h3>
+<p>Пишу тексты. Claude помогает с вариантами заголовков и A/B формулировками.</p>
+
+<h3>13:30 — Интеграции (1 час)</h3>
+<p>Подключаю: аналитику (Yandex.Metrika), формы (Telegram бот), пиксели (Meta/Google).</p>
+
+<h3>14:30 — Тестирование + Деплой (1 час)</h3>
+<p>Проверяю на 3 устройствах. Lighthouse audit. Деплой на Vercel/Framer.</p>
+
+<blockquote>Итого: 6-7 рабочих часов от нуля до живого сайта с аналитикой.</blockquote>
+
+<div class="result-box">
+<h4>Метрики</h4>
+<p><strong>8 лендингов/неделю</strong> — стабильный конвейер</p>
+<p><strong>5 дней → 1 день</strong> — сокращение цикла в 5 раз</p>
+<p><strong>$300-500</strong> за лендинг (студия берёт $1500+)</p>
+<p><strong>90+ Lighthouse</strong> — Performance, SEO, A11y</p>
+</div>
+
+<h2>5 правил vibe-coding</h2>
+<ol>
+<li><strong>Не борись с AI</strong> — если генерация не та, перефразируй промпт, не правь руками</li>
+<li><strong>80/20</strong> — AI делает 80% рутины, ты делаешь 20% кастомизации</li>
+<li><strong>Шаблоны решают</strong> — у меня 5 базовых шаблонов для разных ниш</li>
+<li><strong>Mobile first</strong> — всегда начинай с мобильной версии</li>
+<li><strong>Ship fast, iterate later</strong> — деплой в первый день, правки на второй</li>
+</ol>
+
+<div class="article-cta">
+<h3>Нужен лендинг за 1 день?</h3>
+<p>Дизайн + вёрстка + анимации + адаптив + аналитика. От $300.</p>
+<a href="https://t.me/xCYRAXx1" target="_blank" rel="noopener noreferrer">Заказать в Telegram</a>
+</div>
+</article>
+
+<script>
+try{const t=localStorage.getItem('ptyo_theme');if(t)document.documentElement.setAttribute('data-theme',t);
+else if(matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.setAttribute('data-theme','light')}catch(e){}
+</script>
+</body>
+</html>

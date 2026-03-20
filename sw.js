@@ -1,4 +1,4 @@
-const CACHE_NAME = 'paveltyo-v3';
+const CACHE_NAME = 'paveltyo-v4';
 const BASE = self.registration.scope;
 const ASSETS = [
   '',

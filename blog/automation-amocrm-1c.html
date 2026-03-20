@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>amoCRM + 1С: как убрать 80% ручного ввода — Pavel Tyo</title>
+<meta name="description" content="Автоматизация синхронизации CRM и учётной системы через Make/n8n. Реальные цифры и подводные камни.">
+<meta property="og:title" content="amoCRM + 1С: как убрать 80% ручного ввода">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.article{max-width:700px;margin:0 auto;padding:100px 24px 80px}
+.article h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:16px}
+.article-meta{display:flex;gap:12px;align-items:center;font-size:13px;color:var(--t3);margin-bottom:32px;font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.article-tag{background:var(--tbg);color:var(--tc);padding:3px 10px;border-radius:6px;font-size:11px}
+.article h2{font-size:22px;font-weight:700;letter-spacing:-.5px;margin:40px 0 16px;color:var(--t1)}
+.article h3{font-size:17px;font-weight:600;margin:28px 0 12px;color:var(--t1)}
+.article p{font-size:16px;color:var(--t2);line-height:1.8;margin-bottom:16px}
+.article ul,.article ol{color:var(--t2);font-size:15px;line-height:1.8;margin:0 0 16px 24px}
+.article li{margin-bottom:6px}
+.article strong{color:var(--t1);font-weight:600}
+.article code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--tbg);color:var(--tc);padding:2px 6px;border-radius:4px}
+.article blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:var(--ag);border-radius:0 10px 10px 0;font-style:italic;color:var(--t2)}
+.result-box{background:var(--gg);border:1px solid rgba(52,211,153,.2);border-radius:14px;padding:20px 24px;margin:24px 0}
+.result-box h4{color:var(--grn);font-size:14px;font-weight:600;margin-bottom:8px}
+.result-box p{font-size:14px;margin-bottom:4px}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--t2);text-decoration:none;font-size:14px;padding:16px 24px;position:fixed;top:0;left:0;z-index:100;transition:color .2s}
+.back-link:hover{color:var(--accent-l)}
+.article-cta{margin-top:48px;padding:28px;background:var(--card);border:1px solid var(--bd);border-radius:16px;text-align:center}
+.article-cta h3{margin:0 0 8px;font-size:18px}
+.article-cta p{margin-bottom:16px;font-size:14px}
+.article-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s,transform .2s}
+.article-cta a:hover{background:var(--accent-l);transform:translateY(-2px)}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"amoCRM + 1С: как убрать 80% ручного ввода","author":{"@type":"Person","name":"Pavel Tyo"},"datePublished":"2026-03-15","description":"Автоматизация синхронизации CRM и учётной системы."}</script>
+</head>
+<body>
+<a href="./" class="back-link">← Блог</a>
+
+<article class="article">
+<h1>amoCRM + 1С: как убрать 80% ручного ввода</h1>
+<div class="article-meta">
+<span>15 марта 2026</span>
+<span>7 мин чтения</span>
+<span class="article-tag">Автоматизация</span>
+<span class="article-tag">Кейс</span>
+</div>
+
+<p>Типичная картина в B2B: менеджеры ведут сделки в amoCRM, а бухгалтерия работает в 1С. Между ними — ручной перенос данных. Копипаст. Ошибки. Потерянные заказы.</p>
+
+<h2>Боль клиента</h2>
+<ul>
+<li>Менеджер закрывает сделку в amoCRM — идёт в 1С, создаёт контрагента, выставляет счёт</li>
+<li>Тот же заказ вводится дважды: в CRM и в учётку</li>
+<li>Статусы расходятся: в CRM "оплачено", в 1С "ждём оплату"</li>
+<li>3-5 ошибок в неделю из-за человеческого фактора</li>
+</ul>
+
+<blockquote>Менеджеры тратили 40% рабочего времени на ввод данных вместо продаж.</blockquote>
+
+<h2>Что я сделал</h2>
+
+<h3>1. Двусторонняя синхронизация</h3>
+<p>Make-сценарий слушает вебхуки от amoCRM. При смене статуса сделки:</p>
+<ul>
+<li><strong>Новая сделка</strong> → создаёт контрагента в 1С (если не существует)</li>
+<li><strong>Согласовано</strong> → формирует счёт в 1С, прикрепляет PDF к сделке</li>
+<li><strong>Оплачено</strong> → проводит оплату в 1С, меняет статус</li>
+</ul>
+
+<h3>2. Обратная связь: 1С → amoCRM</h3>
+<p>1С отправляет webhook в Make при:</p>
+<ul>
+<li>Поступлении оплаты → amoCRM обновляет статус</li>
+<li>Отгрузке → amoCRM получает трек-номер</li>
+<li>Возврате → amoCRM создаёт задачу для менеджера</li>
+</ul>
+
+<h3>3. Маппинг номенклатуры</h3>
+<p>Главная сложность: в amoCRM товары называются "курица охлаждённая 1кг", а в 1С — "Мясо птицы (куриное филе) ГОСТ 31962-2013". Создал таблицу маппинга в Google Sheets с fuzzy matching.</p>
+
+<div class="result-box">
+<h4>Результаты</h4>
+<p><strong>−80%</strong> ручного ввода данных</p>
+<p><strong>x3</strong> скорость обработки заказов</p>
+<p><strong>0 расхождений</strong> между CRM и 1С</p>
+<p><strong>3-5 ошибок/нед → 0</strong></p>
+</div>
+
+<h2>Подводные камни</h2>
+<ol>
+<li><strong>1С API нестабилен</strong> — нужны retry с exponential backoff. Make умеет это из коробки.</li>
+<li><strong>Конфликты данных</strong> — если менеджер меняет сделку пока Make обрабатывает — нужна очередь.</li>
+<li><strong>Тестирование</strong> — обязательно тестировать на копии базы 1С, не на боевой.</li>
+</ol>
+
+<h2>Стек</h2>
+<p><code>Make (Integromat)</code> <code>amoCRM API</code> <code>1С REST API</code> <code>Google Sheets</code> <code>n8n (мониторинг)</code></p>
+
+<div class="article-cta">
+<h3>Хотите убрать ручной ввод из вашей CRM?</h3>
+<p>Разберу вашу систему за 30 минут. Бесплатно.</p>
+<a href="https://t.me/xCYRAXx1" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+</div>
+</article>
+
+<script>
+try{const t=localStorage.getItem('ptyo_theme');if(t)document.documentElement.setAttribute('data-theme',t);
+else if(matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.setAttribute('data-theme','light')}catch(e){}
+</script>
+</body>
+</html>
