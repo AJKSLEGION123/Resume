@@ -1,0 +1,4 @@
+Contact: mailto:pavelte382@gmail.com
+Contact: https://t.me/xCYRAXx1
+Preferred-Languages: ru, en
+Canonical: https://paveltyo.com/.well-known/security.txt

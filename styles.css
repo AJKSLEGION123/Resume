@@ -376,6 +376,7 @@ footer .w{flex-wrap:wrap;gap:12px}
 
 /* ══════ QUICK CONTACT FORM ══════ */
 .quick-form{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:28px;transition:background .4s,border-color .4s}
+.quick-form:focus-within{border-color:var(--accent-l)}
 .quick-form h4{font-size:17px;font-weight:600;margin-bottom:6px}
 .quick-form>p{font-size:13px;color:var(--t2);margin-bottom:18px}
 .qf-row{display:flex;gap:10px;margin-bottom:10px}
@@ -570,7 +571,7 @@ footer .w{flex-wrap:wrap;gap:12px}
     .estimate-cta a{background:#4f46e5;color:#fff}
     a{color:#333;text-decoration:none}
     a[href^="http"]::after{content:" (" attr(href) ")";font-size:8pt;color:#666;word-break:break-all}
-    a[href^="tel"]::after,a[href^="mailto"]::after,a[href^="#"]::after{content:none}
+    a[href^="tel"]::after,a[href^="mailto"]::after,a[href^="#"]::after,a[download]::after{content:none}
     .sg,.cg2,.metrics,.pricing-grid,.process-grid,.testimonials-grid{gap:8px}
     .sg{grid-template-columns:repeat(2,1fr)}
     .cg2{grid-template-columns:1fr}
