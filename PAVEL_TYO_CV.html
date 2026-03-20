@@ -462,41 +462,41 @@
 
     <div class="msf-step active" id="ms1">
     <h5 data-i="ms1_h">Что вас интересует?</h5>
-    <div class="msf-opts">
-    <div class="msf-opt" data-val="AI-агент" data-msf-select><div class="msf-ico">🤖</div><span data-i="ms1_o1">AI-агент</span></div>
-    <div class="msf-opt" data-val="Лендинг" data-msf-select><div class="msf-ico">🎨</div><span data-i="ms1_o2">Лендинг</span></div>
-    <div class="msf-opt" data-val="Автоматизация" data-msf-select><div class="msf-ico">⚡</div><span data-i="ms1_o3">Автоматизация</span></div>
-    <div class="msf-opt" data-val="Другое" data-msf-select><div class="msf-ico">💬</div><span data-i="ms1_o4">Другое</span></div>
+    <div class="msf-opts" role="radiogroup">
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="AI-агент" data-msf-select><div class="msf-ico">🤖</div><span data-i="ms1_o1">AI-агент</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="Лендинг" data-msf-select><div class="msf-ico">🎨</div><span data-i="ms1_o2">Лендинг</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="Автоматизация" data-msf-select><div class="msf-ico">⚡</div><span data-i="ms1_o3">Автоматизация</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="Другое" data-msf-select><div class="msf-ico">💬</div><span data-i="ms1_o4">Другое</span></div>
     </div>
     </div>
 
     <div class="msf-step" id="ms2">
     <h5 data-i="ms2_h">Бюджет?</h5>
-    <div class="msf-opts">
-    <div class="msf-opt" data-val="$300-800" data-msf-select><span>$300–800</span></div>
-    <div class="msf-opt" data-val="$800-2000" data-msf-select><span>$800–2000</span></div>
-    <div class="msf-opt" data-val="$2000-5000" data-msf-select><span>$2000–5000</span></div>
-    <div class="msf-opt" data-val="$5000+" data-msf-select><span>$5000+</span></div>
+    <div class="msf-opts" role="radiogroup">
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="$300-800" data-msf-select><span>$300–800</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="$800-2000" data-msf-select><span>$800–2000</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="$2000-5000" data-msf-select><span>$2000–5000</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="$5000+" data-msf-select><span>$5000+</span></div>
     </div>
     <button class="msf-back" data-msf-back data-i="msf_back">← Назад</button>
     </div>
 
     <div class="msf-step" id="ms3">
     <h5 data-i="ms3_h">Когда нужно?</h5>
-    <div class="msf-opts">
-    <div class="msf-opt" data-val="ASAP" data-msf-select><span data-i="ms3_o1">Срочно</span></div>
-    <div class="msf-opt" data-val="1-2 недели" data-msf-select><span data-i="ms3_o2">1–2 недели</span></div>
-    <div class="msf-opt" data-val="1 месяц" data-msf-select><span data-i="ms3_o3">1 месяц</span></div>
-    <div class="msf-opt" data-val="Гибко" data-msf-select><span data-i="ms3_o4">Гибко</span></div>
+    <div class="msf-opts" role="radiogroup">
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="ASAP" data-msf-select><span data-i="ms3_o1">Срочно</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="1-2 недели" data-msf-select><span data-i="ms3_o2">1–2 недели</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="1 месяц" data-msf-select><span data-i="ms3_o3">1 месяц</span></div>
+    <div class="msf-opt" role="radio" tabindex="0" aria-checked="false" data-val="Гибко" data-msf-select><span data-i="ms3_o4">Гибко</span></div>
     </div>
     <button class="msf-back" data-msf-back data-i="msf_back">← Назад</button>
     </div>
 
     <div class="msf-step" id="ms4">
     <h5 data-i="ms4_h">Контакты</h5>
-    <input type="text" class="qf-input" id="msfName" placeholder="Имя" style="margin-bottom:8px;width:100%">
-    <input type="text" class="qf-input" id="msfContact" placeholder="Telegram / телефон" style="margin-bottom:8px;width:100%">
-    <textarea class="qf-textarea" id="msfMsg" placeholder="Кратко опишите задачу..." style="margin-bottom:12px"></textarea>
+    <input type="text" class="qf-input" id="msfName" placeholder="Имя" aria-label="Имя" style="margin-bottom:8px;width:100%">
+    <input type="text" class="qf-input" id="msfContact" placeholder="Telegram / телефон" aria-label="Telegram или телефон" aria-required="true" style="margin-bottom:8px;width:100%">
+    <textarea class="qf-textarea" id="msfMsg" placeholder="Кратко опишите задачу..." aria-label="Описание задачи" style="margin-bottom:12px"></textarea>
     <button class="qf-submit" id="msfSubmit" data-i="msf_send">Отправить заявку</button>
     <button class="msf-back" data-msf-back data-i="msf_back">← Назад</button>
     </div>
@@ -541,7 +541,7 @@
 </div>
 
 <!-- Social Proof Toast -->
-<div class="sp-toast" id="spToast" aria-live="polite">
+<div class="sp-toast" id="spToast" aria-live="polite" aria-atomic="true">
 <div class="sp-toast-ava" id="spAva">🍽</div>
 <div><div class="sp-toast-text" id="spText"><strong>Ресторатор из Алматы</strong> заказал AI-агента для WhatsApp</div><div class="sp-toast-time" id="spTime">12 мин назад</div></div>
 <button class="sp-toast-close" id="spClose" aria-label="Закрыть">×</button>
@@ -550,7 +550,7 @@
 <!-- Command Palette -->
 <div class="cmd-overlay" id="cmdOverlay">
 <div class="cmd-box">
-<input class="cmd-input" id="cmdInput" placeholder="Перейти к..." autocomplete="off">
+<input class="cmd-input" id="cmdInput" placeholder="Перейти к..." autocomplete="off" aria-label="Поиск по секциям сайта" role="combobox" aria-expanded="true" aria-controls="cmdResults">
 <div class="cmd-results" id="cmdResults"></div>
 <div class="cmd-hint"><kbd>↑↓</kbd> навигация <kbd>Enter</kbd> перейти <kbd>Esc</kbd> закрыть</div>
 </div>

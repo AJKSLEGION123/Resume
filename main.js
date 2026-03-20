@@ -109,7 +109,7 @@ function onScroll(){
     if(!ticking){requestAnimationFrame(()=>{
         try{
         const h=D.documentElement.scrollHeight-innerHeight;
-        $('spb').style.width=(scrollY/h*100)+'%';
+        $('spb').style.setProperty('--progress',(scrollY/h*100)+'%');
         $('btt').classList.toggle('vis',scrollY>500);
         D.querySelector('nav').classList.toggle('scrolled',scrollY>20);
         checkProgress();
@@ -322,8 +322,8 @@ Q('.faq-q').forEach(q=>{
 /* ══════ MULTI-STEP FORM ══════ */
 let msfStep=1,msfData={};
 function msfSelect(el){
-    el.parentElement.querySelectorAll('.msf-opt').forEach(o=>o.classList.remove('selected'));
-    el.classList.add('selected');
+    el.parentElement.querySelectorAll('.msf-opt').forEach(o=>{o.classList.remove('selected');o.setAttribute('aria-checked','false')});
+    el.classList.add('selected');el.setAttribute('aria-checked','true');
     const keys=['type','budget','timeline'];
     msfData[keys[msfStep-1]]=el.dataset.val;
     setTimeout(()=>msfNext(),300);
@@ -362,7 +362,7 @@ $('msfSubmit').onclick=()=>{
     announce(L[lang].qf_ok||'Sent');
     setTimeout(()=>{$('msfSuccess').classList.remove('show');msfStep=1;$('ms1').classList.add('active');updateMsfBars();msfData={};Q('.msf-opt').forEach(o=>o.classList.remove('selected'));$('msfName').value='';$('msfContact').value='';$('msfMsg').value='';$('msfSubmit').disabled=false;$('msfSubmit').textContent=L[lang].msf_send||'Отправить заявку'},5000);
 };
-Q('[data-msf-select]').forEach(el=>el.addEventListener('click',()=>msfSelect(el)));
+Q('[data-msf-select]').forEach(el=>{el.addEventListener('click',()=>msfSelect(el));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();msfSelect(el)}})});
 Q('[data-msf-back]').forEach(el=>el.addEventListener('click',()=>msfBack()));
 
 /* ══════ SOCIAL PROOF TOASTS ══════ */
@@ -455,7 +455,9 @@ if(phoneEl){phoneEl.addEventListener('click',e=>{
 /* ══════ 3D TILT ══════ */
 if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
 Q('.tilt').forEach(el=>{
-    el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(600px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-3px)`;el.style.transition='transform .1s'});
+    let cachedRect;
+    el.addEventListener('mouseenter',()=>{cachedRect=el.getBoundingClientRect()});
+    el.addEventListener('mousemove',e=>{const r=cachedRect||el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(600px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-3px)`;el.style.transition='transform .1s'},{passive:true});
     el.addEventListener('mouseleave',()=>{el.style.transform='';el.style.transition='transform .4s'})
 })}
 
@@ -463,7 +465,7 @@ Q('.tilt').forEach(el=>{
 const cgEl=$('cg');
 if(matchMedia('(pointer:fine)').matches){
 let mx=0,my=0,cx=0,cy=0;
-D.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cgEl.classList.add('on')});
+D.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cgEl.classList.add('on')},{passive:true});
 D.addEventListener('mouseleave',()=>cgEl.classList.remove('on'));
 (function glowTick(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;cgEl.style.transform=`translate(${cx-150}px,${cy-150}px)`;requestAnimationFrame(glowTick)})()
 }
