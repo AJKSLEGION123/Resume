@@ -183,7 +183,17 @@ function renderCmd(q){
     const res=$('cmdResults');
     const filtered=q?cmdSections.filter(s=>s.label.toLowerCase().includes(q.toLowerCase())):cmdSections;
     cmdIdx=0;
-    res.innerHTML=filtered.map((s,i)=>`<div class="cmd-item${i===0?' active':''}" data-idx="${i}" onclick="execCmd(${i},'${q}')"><div class="cmd-ico">${s.icon}</div>${s.label}</div>`).join('');
+    while(res.firstChild)res.removeChild(res.firstChild);
+    filtered.forEach((s,i)=>{
+        const item=D.createElement('div');
+        item.className='cmd-item'+(i===0?' active':'');
+        item.dataset.idx=i;
+        const ico=D.createElement('div');ico.className='cmd-ico';ico.textContent=s.icon;
+        item.appendChild(ico);
+        item.appendChild(D.createTextNode(s.label));
+        item.addEventListener('click',()=>execCmd(i,q));
+        res.appendChild(item);
+    });
 }
 function execCmd(idx,q){
     const filtered=q?cmdSections.filter(s=>s.label.toLowerCase().includes(q.toLowerCase())):cmdSections;
@@ -269,12 +279,12 @@ const waMessages=[
 ];
 function runWaDemo(){
     const chat=$('waChat');if(!chat)return;
-    chat.innerHTML='';
+    while(chat.firstChild)chat.removeChild(chat.firstChild);
     waMessages.forEach((m,i)=>{
         setTimeout(()=>{
             if(m.type==='typing'){
                 const el=D.createElement('div');el.className='wa-typing';el.style.animationDelay='0s';
-                el.innerHTML='<span></span><span></span><span></span>';chat.appendChild(el);
+                for(let s=0;s<3;s++)el.appendChild(D.createElement('span'));chat.appendChild(el);
                 setTimeout(()=>el.remove(),800);
             }else{
                 // Remove any typing indicator
@@ -284,7 +294,8 @@ function runWaDemo(){
                 el.style.animationDelay='0s';
                 const time=new Date();time.setMinutes(time.getMinutes()+i);
                 const ts=time.toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'});
-                el.innerHTML=m.text.replace(/\n/g,'<br>')+'<div class="wa-time">'+ts+'</div>';
+                m.text.split('\n').forEach((line,li)=>{if(li>0)el.appendChild(D.createElement('br'));el.appendChild(D.createTextNode(line))});
+                const timeDiv=D.createElement('div');timeDiv.className='wa-time';timeDiv.textContent=ts;el.appendChild(timeDiv);
                 chat.appendChild(el);
                 chat.scrollTop=chat.scrollHeight;
             }
@@ -356,17 +367,18 @@ Q('[data-msf-back]').forEach(el=>el.addEventListener('click',()=>msfBack()));
 
 /* ══════ SOCIAL PROOF TOASTS ══════ */
 const spItems=[
-    {ava:'🍽',text:'<strong>Ресторатор из Алматы</strong> заказал AI-агента для WhatsApp',time:'12 мин назад'},
-    {ava:'📊',text:'<strong>Финансовая компания</strong> запустила автоматизацию amoCRM + 1С',time:'34 мин назад'},
-    {ava:'🚀',text:'<strong>Стартап из Дубая</strong> заказал 3 лендинга за неделю',time:'1 час назад'},
-    {ava:'💬',text:'<strong>E-commerce из Астаны</strong> подключил AI-поддержку',time:'2 часа назад'},
-    {ava:'🏢',text:'<strong>Консалтинговая фирма</strong> заказала LinkedIn AI-агента',time:'3 часа назад'},
+    {ava:'🍽',who:'Ресторатор из Алматы',what:' заказал AI-агента для WhatsApp',time:'12 мин назад'},
+    {ava:'📊',who:'Финансовая компания',what:' запустила автоматизацию amoCRM + 1С',time:'34 мин назад'},
+    {ava:'🚀',who:'Стартап из Дубая',what:' заказал 3 лендинга за неделю',time:'1 час назад'},
+    {ava:'💬',who:'E-commerce из Астаны',what:' подключил AI-поддержку',time:'2 часа назад'},
+    {ava:'🏢',who:'Консалтинговая фирма',what:' заказала LinkedIn AI-агента',time:'3 часа назад'},
 ];
 let spIdx=0,spTimer;
 function showSp(){
     const t=$('spToast'),item=spItems[spIdx];
     $('spAva').textContent=item.ava;
-    $('spText').innerHTML=item.text;
+    const spText=$('spText');while(spText.firstChild)spText.removeChild(spText.firstChild);
+    const strong=D.createElement('strong');strong.textContent=item.who;spText.appendChild(strong);spText.appendChild(D.createTextNode(item.what));
     $('spTime').textContent=item.time;
     t.classList.add('vis');
     setTimeout(()=>t.classList.remove('vis'),5000);
@@ -428,7 +440,7 @@ function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('vi
 const skillPcts=[95,85,92,75,90,80,88,82,85,85];
 Q('.sc .tags').forEach((t,i)=>{
     const bar=D.createElement('div');bar.className='skill-bar';
-    bar.innerHTML='<div class="skill-bar-fill" style="--fill:'+(skillPcts[i]||80)+'%"></div>';
+    const fill=D.createElement('div');fill.className='skill-bar-fill';fill.style.setProperty('--fill',(skillPcts[i]||80)+'%');bar.appendChild(fill);
     t.after(bar);
 });
 const skObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){Q('.skill-bar-fill').forEach(bar=>bar.classList.add('animated'));skObs.disconnect()}})},{threshold:.2});
