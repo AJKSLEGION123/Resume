@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://paveltyo.com/sitemap.xml
+Sitemap: https://ajkslegion123.github.io/Resume/sitemap.xml

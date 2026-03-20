@@ -1,12 +1,13 @@
-const CACHE_NAME = 'paveltyo-v2';
+const CACHE_NAME = 'paveltyo-v3';
+const BASE = self.registration.scope;
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/main.js',
-  '/PAVEL_TYO_CV.pdf',
-  '/manifest.json'
-];
+  '',
+  'index.html',
+  'styles.css',
+  'main.js',
+  'PAVEL_TYO_CV.pdf',
+  'manifest.json'
+].map(p => new URL(p, BASE).href);
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));

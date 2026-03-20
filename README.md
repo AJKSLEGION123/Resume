@@ -1,56 +1,62 @@
-# Pavel Tyo — AI Engineer Portfolio
+# Pavel Tyo — Freelance AI Engineer
 
-Single-page portfolio website for Pavel Tyo, Freelance AI Engineer based in Almaty, Kazakhstan.
+**AI Agents | Automation | Voice Bots | Landing Pages**
 
-## Features
+[Live Site](https://ajkslegion123.github.io/Resume/) | [Telegram](https://t.me/xCYRAXx1) | [LinkedIn](https://linkedin.com/in/paveltyo)
+
+---
+
+## About
+
+Freelance AI Engineer based in Almaty, Kazakhstan. 3+ years building AI sales agents, voice bots, CRM/1C automations, and high-converting landing pages.
+
+**Key results:**
+- 25+ production automation scenarios
+- 500+ operator-hours saved monthly
+- 60% of inquiries handled without operator
+- MVPs delivered in 1-2 days
+
+## Tech Stack
+
+**AI/LLM:** GPT-4o, Claude API, Google Gemini, RAG, AI Agents
+**Voice:** Tomoru, Twin, Aimylogic
+**Automation:** Make (Integromat), n8n, Zapier, Python, FastAPI
+**Web:** React, Next.js, TypeScript, TailwindCSS, shadcn/ui
+**Databases:** PostgreSQL, Supabase, Firebase, Redis, Prisma
+**Business:** 1C API, amoCRM, Bitrix24, WhatsApp Business API
+**Tools:** Docker, Vercel, GitHub Actions, Cursor, Claude Code
+
+## Site Features
 
 - Dark/Light theme with system preference detection
 - Bilingual (RU/EN) with instant switching
 - WhatsApp AI agent demo mockup
 - ROI savings calculator
-- Multi-step contact form
-- Command palette (Ctrl+K)
+- Multi-step contact form with validation
+- Command palette (Ctrl+K) + keyboard shortcuts (T, L, ?)
 - Three.js animated background
-- SoundCloud music integration
-- Responsive design (mobile-first)
-- Print-optimized layout
-- SEO: Schema.org structured data (Person, Service, FAQ, LocalBusiness)
-- Accessibility: skip-to-content, ARIA labels, keyboard navigation, reduced motion, high contrast
+- Web Share API integration
+- PWA-ready (offline support)
+- WCAG 2.1 AA accessible
+- SEO: 6 Schema.org structured data types
+- Print-optimized with contact info
 
-## Tech Stack
+## Services
 
-- HTML5 / CSS3 (custom properties, grid, flexbox)
-- Vanilla JavaScript (no frameworks)
-- Three.js (animated dot surface)
-- Google Fonts (Outfit, JetBrains Mono)
-
-## Sections
-
-1. Hero with typing animation and stats
-2. Metrics dashboard
-3. Tech stack / Skills
-4. Process (4-step workflow)
-5. Experience timeline
-6. Testimonials
-7. Project cases with filters
-8. WhatsApp AI demo + ROI calculator
-9. Pricing packages
-10. FAQ accordion
-11. Contact with multi-step form
-
-## Deploy
-
-Static HTML — deploy to any hosting:
-
-```bash
-# GitHub Pages
-git push origin main
-# Enable Pages in repo Settings → Pages → main branch
-```
+| Service | Price | Delivery |
+|---------|-------|----------|
+| Landing Page | from $300 | 1-2 days |
+| AI Agent (WhatsApp/Telegram) | from $800 | 2 weeks |
+| Automation (1C+CRM+Bots) | from $500 | 1-3 weeks |
 
 ## Contact
 
-- Telegram: [@xCYRAXx1](https://t.me/xCYRAXx1)
-- Email: pavelte382@gmail.com
-- LinkedIn: [in/paveltyo](https://linkedin.com/in/paveltyo)
-- GitHub: [paveltyo](https://github.com/paveltyo)
+- **Telegram:** [@xCYRAXx1](https://t.me/xCYRAXx1)
+- **Email:** pavelte382@gmail.com
+- **Phone:** +7 (707) 244-87-45
+- **LinkedIn:** [in/paveltyo](https://linkedin.com/in/paveltyo)
+- **GitHub:** [paveltyo](https://github.com/paveltyo)
+
+---
+
+Built with vanilla HTML/CSS/JS. No frameworks. Zero dependencies (except Three.js for 3D background).

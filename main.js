@@ -7,7 +7,7 @@ $('yr').textContent=new Date().getFullYear();
 function dismissPreloader(){const p=$('preloader');if(p&&!p.classList.contains('done')){p.classList.add('done');D.body.classList.remove('loading')}}
 window.addEventListener('load',()=>setTimeout(dismissPreloader,500));
 setTimeout(dismissPreloader,3000); /* fallback if external scripts fail */
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{})}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 /* Performance monitoring */
 if('PerformanceObserver' in window){try{new PerformanceObserver(l=>{l.getEntries().forEach(e=>{if(e.entryType==='largest-contentful-paint'){console.log('[PERF] LCP:',Math.round(e.startTime)+'ms')}})}).observe({type:'largest-contentful-paint',buffered:true})}catch(e){}}
 
