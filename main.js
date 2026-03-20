@@ -449,6 +449,7 @@ try{
     const vc=+(localStorage.getItem('ptyo_visits')||0)+1;
     localStorage.setItem('ptyo_visits',String(vc));
     localStorage.setItem('ptyo_last_visit',new Date().toISOString());
+    if(vc>1&&vc<=3){setTimeout(()=>showToast(lang==='ru'?'С возвращением! 👋':'Welcome back! 👋'),3000)}
 }catch(e){}
 
 /* ══════ ARIA ANNOUNCE ══════ */
