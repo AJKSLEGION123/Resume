@@ -88,6 +88,7 @@
         <button class="nb mb" id="mBtn" aria-label="Включить музыку: Roxxy — Сомнения" data-tip="Roxxy — Сомнения"><div class="bars" aria-hidden="true"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></button>
         <button class="nb lb" id="lBtn" aria-label="Переключить язык" data-tip="Language">RU</button>
         <button class="nb" id="tBtn" aria-label="Переключить тему" data-tip="Тема"><svg id="tIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="nb" id="shareBtn" aria-label="Поделиться" data-tip="Share" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
         <button class="ham" id="ham" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 </div>
@@ -100,7 +101,7 @@
 <div class="w">
 <div class="hero-inner">
 <div class="hero-text">
-    <div class="hbadge"><span class="pdot" aria-hidden="true"></span><span data-i="hero_badge">Открыт к проектам</span></div>
+    <div class="hbadge"><span class="pdot" aria-hidden="true"></span><span id="heroGreet" data-i="hero_badge">Открыт к проектам</span></div>
     <h1 class="ht">Freelance<br>AI Engineer<br><span class="gr">& Automation Architect</span></h1>
     <div class="htyp" aria-label="Автонабор текста"><span id="tt"></span><span class="cur" aria-hidden="true"></span></div>
     <p class="hd" data-i="hero_desc">AI-агенты для продаж, голосовые роботы, автоматизация 1С + CRM + мессенджеры. 25+ проектов в продакшене, 500+ сэкономленных операторо-часов в месяц. MVP за 1-2 дня. Клиенты: KZ, RU, UAE.</p>
@@ -159,6 +160,9 @@
     </svg>
 </div>
 </div>
+</div>
+<div class="scroll-hint rv" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 </section>
 
@@ -498,7 +502,8 @@
     <h5 data-i="ms4_h">Контакты</h5>
     <input type="text" class="qf-input" id="msfName" placeholder="Имя" aria-label="Имя" style="margin-bottom:8px;width:100%">
     <input type="text" class="qf-input" id="msfContact" placeholder="Telegram / телефон" aria-label="Telegram или телефон" aria-required="true" style="margin-bottom:8px;width:100%">
-    <textarea class="qf-textarea" id="msfMsg" placeholder="Кратко опишите задачу..." aria-label="Описание задачи" style="margin-bottom:12px"></textarea>
+    <textarea class="qf-textarea" id="msfMsg" placeholder="Кратко опишите задачу..." aria-label="Описание задачи" maxlength="500" style="margin-bottom:4px"></textarea>
+    <div class="char-counter" id="charCounter" aria-live="polite" style="text-align:right;font-size:11px;color:var(--t3);margin-bottom:12px;font-family:'JetBrains Mono',monospace">0/500</div>
     <button class="qf-submit" id="msfSubmit" data-i="msf_send">Отправить заявку</button>
     <button class="msf-back" data-msf-back data-i="msf_back">← Назад</button>
     </div>

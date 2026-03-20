@@ -117,6 +117,11 @@ nav .w{display:flex;justify-content:space-between;align-items:center;height:60px
 .hsn .p{color:var(--accent-l)}.hsl{font-size:13px;color:var(--t3);margin-top:2px}
 @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
+/* Scroll hint */
+.scroll-hint{text-align:center;padding-top:32px;animation:fu .5s ease-out .5s both}
+.scroll-hint svg{color:var(--t3);animation:scrollBounce 2s ease-in-out infinite;opacity:.6}
+@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
 /* ══════ BUTTONS ══════ */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;font-size:15px;font-weight:500;text-decoration:none;transition:background .25s,border-color .25s,color .25s,transform .25s,box-shadow .25s;cursor:pointer;border:none;font-family:inherit}
 .bp{background:var(--accent);color:#fff}.bp:hover{background:var(--accent-l);transform:translateY(-2px);box-shadow:0 8px 30px var(--ags)}

@@ -84,6 +84,23 @@ const ttEl=$('tt');let tto;
 function startTyp(){clearTimeout(tto);const lines=L[lang].typing;let li=0,ci=0,del=false;(function tick(){const ln=lines[li];if(!del){ttEl.textContent=ln.substring(0,ci+1);ci++;if(ci>=ln.length){del=true;tto=setTimeout(tick,2200);return}tto=setTimeout(tick,55)}else{ttEl.textContent=ln.substring(0,ci);ci--;if(ci<0){del=false;ci=0;li=(li+1)%lines.length;tto=setTimeout(tick,400);return}tto=setTimeout(tick,30)}})()}
 startTyp();
 
+/* ══════ TIME-BASED GREETING ══════ */
+(function(){
+    const h=new Date().getHours();
+    const greets={ru:h<6?'Доброй ночи':h<12?'Доброе утро':h<18?'Добрый день':'Добрый вечер',
+                  en:h<6?'Good night':h<12?'Good morning':h<18?'Good afternoon':'Good evening'};
+    const el=$('heroGreet');
+    if(el){const base=el.textContent;el.textContent=greets[lang]+' — '+base.toLowerCase()}
+})();
+
+/* ══════ WEB SHARE ══════ */
+if(navigator.share){
+    const sb=$('shareBtn');
+    if(sb){sb.style.display='';sb.addEventListener('click',()=>{
+        navigator.share({title:'Pavel Tyo — AI Engineer',text:L[lang].hero_desc||'',url:location.href}).catch(()=>{})
+    })}
+}
+
 /* ══════ ALMATY TIME ══════ */
 function updateTime(){$('atimeVal').textContent='Алматы '+new Date().toLocaleTimeString('ru-RU',{timeZone:'Asia/Almaty',hour:'2-digit',minute:'2-digit'})}
 updateTime();setInterval(updateTime,30000);
@@ -114,6 +131,7 @@ function onScroll(){
         const h=D.documentElement.scrollHeight-innerHeight;
         $('spb').style.setProperty('--progress',(scrollY/h*100)+'%');
         $('btt').classList.toggle('vis',scrollY>500);
+        const sh=D.querySelector('.scroll-hint');if(sh&&scrollY>100)sh.style.opacity='0';
         D.querySelector('nav').classList.toggle('scrolled',scrollY>20);
         checkProgress();
         checkFloats();
@@ -141,6 +159,7 @@ function checkProgress(){spEl.classList.toggle('vis',scrollY>400)}
 Q('.sg .sc, .cg2 .cc, .pricing-grid .price-card, .testimonials-grid .tcard, .metrics .metric-card').forEach((el,i)=>{
     el.style.transitionDelay=(i%4)*80+'ms';
 });
+Q('.guar').forEach((el,i)=>{el.style.transitionDelay=i*60+'ms'});
 
 /* ══════ FLOATING TG + STICKY CTA ══════ */
 const ftg=$('floatTg'),sct=$('stickyCta');
@@ -353,6 +372,8 @@ $('msfSubmit').onclick=()=>{
     announce(L[lang].qf_ok||'Sent');
     setTimeout(()=>{$('msfSuccess').classList.remove('show');msfStep=1;$('ms1').classList.add('active');updateMsfBars();msfData={};Q('.msf-opt').forEach(o=>o.classList.remove('selected'));$('msfName').value='';$('msfContact').value='';$('msfMsg').value='';$('msfSubmit').disabled=false;$('msfSubmit').textContent=L[lang].msf_send||'Отправить заявку'},5000);
 };
+/* Char counter */
+$('msfMsg').addEventListener('input',()=>{const l=$('msfMsg').value.length;$('charCounter').textContent=l+'/500';$('charCounter').style.color=l>450?'var(--accent)':'var(--t3)'});
 Q('[data-msf-select]').forEach(el=>{el.addEventListener('click',()=>msfSelect(el));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();msfSelect(el)}})});
 Q('[data-msf-back]').forEach(el=>el.addEventListener('click',()=>msfBack()));
 
@@ -415,6 +436,13 @@ calcRoi();
 const months={ru:['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'],en:['January','February','March','April','May','June','July','August','September','October','November','December']};
 function setAvMonth(){const m=new Date().getMonth();$('avMonth').textContent=months[lang]?months[lang][m]:''}
 setAvMonth();
+
+/* ══════ VISIT TRACKING (privacy-friendly, localStorage only) ══════ */
+try{
+    const vc=+(localStorage.getItem('ptyo_visits')||0)+1;
+    localStorage.setItem('ptyo_visits',String(vc));
+    localStorage.setItem('ptyo_last_visit',new Date().toISOString());
+}catch(e){}
 
 /* ══════ ARIA ANNOUNCE ══════ */
 function announce(msg){const el=$('ariaLive');if(el){el.textContent='';setTimeout(()=>{el.textContent=msg},100)}}
