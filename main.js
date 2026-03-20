@@ -135,6 +135,8 @@ function onScroll(){
         D.querySelector('nav').classList.toggle('scrolled',scrollY>20);
         checkProgress();
         checkFloats();
+        /* Auto-close mobile menu on scroll */
+        if($('etabs').classList.contains('open')){$('etabs').classList.remove('open');$('ham').classList.remove('x');$('ham').setAttribute('aria-expanded','false')}
         }catch(e){}
         ticking=false;
     });ticking=true}
@@ -268,6 +270,9 @@ D.addEventListener('click',e=>{const tabs=$('etabs'),ham=$('ham');if(!tabs.conta
 /* ══════ KEYBOARD ══════ */
 D.addEventListener('keydown',e=>{
     if(e.key==='Escape'){$('etabs').classList.remove('open');$('ham').classList.remove('x');$('ham').setAttribute('aria-expanded','false')}
+    if(e.key==='?'&&!e.ctrlKey&&!e.metaKey&&D.activeElement===D.body){showToast(lang==='ru'?'⌨️ Ctrl+K — поиск, T — тема, L — язык':'⌨️ Ctrl+K — search, T — theme, L — language')}
+    if(e.key==='t'&&!e.ctrlKey&&!e.metaKey&&D.activeElement===D.body){$('tBtn').click()}
+    if(e.key==='l'&&!e.ctrlKey&&!e.metaKey&&D.activeElement===D.body){$('lBtn').click()}
     /* Konami: ↑↑↓↓←→←→BA */
     const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
     if(e.code===seq[ki]){ki++;if(ki===seq.length){ki=0;fireConfetti()}}else if(seq.indexOf(e.code)===0){ki=1}else{ki=0}
