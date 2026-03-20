@@ -1,0 +1,11 @@
+/* TEAM */
+Developer: Pavel Tyo
+Role: AI Engineer / Automation Architect
+Location: Almaty, Kazakhstan
+Contact: pavelte382 [at] gmail.com
+Telegram: @xCYRAXx1
+
+/* SITE */
+Standards: HTML5, CSS3, ES2022
+Components: Three.js, Google Fonts
+Software: VS Code, Cursor, Claude Code

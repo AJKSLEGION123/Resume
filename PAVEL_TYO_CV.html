@@ -7,10 +7,13 @@
 <meta name="description" content="Freelance AI Engineer. AI-агенты для продаж, голосовые роботы, автоматизация 1С+CRM. 25+ проектов, 500+ часов экономии/мес. Алматы.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#6366f1">
+<meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="color-scheme" content="dark light">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://paveltyo.com">
 <meta property="og:title" content="Pavel Tyo — Freelance AI Engineer | AI Agents & Automation">
@@ -28,11 +31,12 @@
 <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%2334d399'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='630' fill='%2308080d'/%3E%3Ctext x='80' y='220' font-family='sans-serif' font-size='72' font-weight='900' fill='white'%3EPavel Tyo%3C/text%3E%3Ctext x='80' y='310' font-family='sans-serif' font-size='48' font-weight='700' fill='url(%23g)'%3EAI Engineer%3C/text%3E%3Ctext x='80' y='380' font-family='sans-serif' font-size='28' fill='%239090a8'%3EAI-агенты × Автоматизация × Быстрый запуск%3C/text%3E%3Ctext x='80' y='520' font-family='sans-serif' font-size='22' fill='%236a6a84'%3Epaveltyo.com%3C/text%3E%3C/svg%3E">
 <link rel="alternate" hreflang="ru" href="https://paveltyo.com">
 <link rel="alternate" hreflang="en" href="https://paveltyo.com?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://paveltyo.com">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Pavel Tyo","jobTitle":"AI Engineer","url":"https://paveltyo.com","email":"pavelte382@gmail.com","telephone":"+77072448745","address":{"@type":"PostalAddress","addressLocality":"Almaty","addressCountry":"KZ"},"knowsAbout":["AI Agents","LLM Integration","Voice AI","No-Code","Automation","Web Development","WhatsApp Business API","1C Integration","CRM Automation","Landing Pages"],"sameAs":["https://t.me/xCYRAXx1","https://github.com/paveltyo","https://linkedin.com/in/paveltyo"]}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer onerror="this.remove()"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer crossorigin="anonymous" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" onerror="this.remove()"></script>
 <script src="https://w.soundcloud.com/player/api.js" defer onerror="this.remove()"></script>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style">
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -321,9 +325,9 @@
 <div class="roi-calc rv">
 <h4 style="font-size:16px;font-weight:600;margin-bottom:4px" data-i="roi_h">Калькулятор экономии</h4>
 <p style="font-size:13px;color:var(--t2);margin-bottom:16px" data-i="roi_p">Сколько вы сэкономите с AI-агентом</p>
-<div class="roi-row"><label data-i="roi_l1">Заявок в месяц <span id="roiLeads">100</span></label><input type="range" class="roi-slider" id="roiLeadsR" min="20" max="500" value="100" step="10"></div>
-<div class="roi-row"><label data-i="roi_l2">Время на заявку, мин <span id="roiTime">15</span></label><input type="range" class="roi-slider" id="roiTimeR" min="5" max="60" value="15" step="5"></div>
-<div class="roi-row"><label data-i="roi_l3">Стоимость часа оператора, $ <span id="roiRate">5</span></label><input type="range" class="roi-slider" id="roiRateR" min="2" max="30" value="5" step="1"></div>
+<div class="roi-row"><label data-i="roi_l1">Заявок в месяц <span id="roiLeads">100</span></label><input type="range" class="roi-slider" id="roiLeadsR" min="20" max="500" value="100" step="10" aria-label="Заявок в месяц" aria-valuemin="20" aria-valuemax="500" aria-valuenow="100"></div>
+<div class="roi-row"><label data-i="roi_l2">Время на заявку, мин <span id="roiTime">15</span></label><input type="range" class="roi-slider" id="roiTimeR" min="5" max="60" value="15" step="5" aria-label="Время на заявку в минутах" aria-valuemin="5" aria-valuemax="60" aria-valuenow="15"></div>
+<div class="roi-row"><label data-i="roi_l3">Стоимость часа оператора, $ <span id="roiRate">5</span></label><input type="range" class="roi-slider" id="roiRateR" min="2" max="30" value="5" step="1" aria-label="Стоимость часа оператора" aria-valuemin="2" aria-valuemax="30" aria-valuenow="5"></div>
 <div class="roi-result"><div class="roi-big" id="roiSave">$375</div><div class="roi-label" data-i="roi_res">экономия в месяц с AI-агентом (60% автоматизация)</div></div>
 </div>
 <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--t2)" data-i="demo_note">Реальный сценарий работы AI-агента в WhatsApp</p>

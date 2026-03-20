@@ -1,0 +1,29 @@
+# Pavel Tyo — AI Engineer
+
+> Freelance AI Engineer based in Almaty, Kazakhstan. Specializes in AI sales agents, voice bots, workflow automation, and landing pages.
+
+## Services
+- AI Agents (WhatsApp, Telegram bots with LLM) — from $800
+- Automation (Make/n8n, 1C+CRM integrations) — from $500
+- Landing Pages (design + code in 1 day) — from $300
+
+## Experience
+- 3+ years in AI/automation engineering
+- 25+ production scenarios in Make/n8n
+- 500+ operator-hours saved monthly
+- Clients: Kazakhstan, Russia, UAE
+
+## Tech Stack
+AI: GPT-4o, Claude, Gemini, RAG
+Voice: Tomoru, Twin, Aimylogic
+Automation: Make, n8n, Zapier, Python
+Web: React, Next.js, TypeScript, TailwindCSS
+DB: PostgreSQL, Supabase, Firebase, Redis
+Business: 1C API, amoCRM, Bitrix24, WhatsApp Business API
+
+## Contact
+- Telegram: https://t.me/xCYRAXx1
+- Email: pavelte382@gmail.com
+- GitHub: https://github.com/paveltyo
+- LinkedIn: https://linkedin.com/in/paveltyo
+- Website: https://paveltyo.com

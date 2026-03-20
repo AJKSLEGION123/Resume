@@ -342,6 +342,7 @@ $('msfSubmit').onclick=()=>{
     const name=$('msfName').value.trim();
     const contact=$('msfContact').value.trim();
     const msg=$('msfMsg').value.trim();
+    if(!contact){$('msfContact').style.borderColor='var(--accent)';$('msfContact').focus();setTimeout(()=>$('msfContact').style.borderColor='',2000);return}
     const text=encodeURIComponent('Заявка с сайта:\nТип: '+(msfData.type||'-')+'\nБюджет: '+(msfData.budget||'-')+'\nСрок: '+(msfData.timeline||'-')+'\n'+(name?'Имя: '+name+'\n':'')+(contact?'Контакт: '+contact+'\n':'')+(msg?'Задача: '+msg:''));
     window.open('https://t.me/xCYRAXx1?text='+text,'_blank');
     Q('.msf-step').forEach(s=>s.classList.remove('active'));
@@ -395,6 +396,9 @@ function calcRoi(){
     $('roiLeads').textContent=leads;
     $('roiTime').textContent=time;
     $('roiRate').textContent=rate;
+    $('roiLeadsR').setAttribute('aria-valuenow',leads);
+    $('roiTimeR').setAttribute('aria-valuenow',time);
+    $('roiRateR').setAttribute('aria-valuenow',rate);
     const save=Math.round(leads*time/60*rate*0.6);
     $('roiSave').textContent='$'+save.toLocaleString();
 }

@@ -10,7 +10,7 @@
 
 /* ══════ BASE ══════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px;scrollbar-width:thin;scrollbar-color:var(--bdl) var(--bg)}
+html{scroll-behavior:smooth;scroll-padding-top:72px;scrollbar-width:thin;scrollbar-color:var(--bdl) var(--bg);overscroll-behavior-y:none}
 body{font-family:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden;transition:background .4s,color .4s}
 body.loading{overflow:hidden}
 ::selection{background:var(--ags);color:var(--t1)}
@@ -116,7 +116,7 @@ section{padding:100px 0;position:relative;z-index:1;background:var(--bg);transit
 section.hero{background:transparent}
 section.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--bg));pointer-events:none;z-index:0}
 section:nth-of-type(even){background:var(--bg2)}
-.sh{margin-bottom:52px}.sla{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-l);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px}.stl{font-size:34px;font-weight:700;letter-spacing:-1.5px}
+.sh{margin-bottom:52px}.sla{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-l);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px}.stl{font-size:34px;font-weight:700;letter-spacing:-1.5px;text-wrap:balance}
 
 /* ══════ SKILLS ══════ */
 .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
@@ -572,6 +572,8 @@ footer .w{flex-wrap:wrap;gap:12px}
     .estimate-cta{background:#f0f0ff;border:1px solid #ddd}
     .estimate-cta a{background:#4f46e5;color:#fff}
     a{color:#333;text-decoration:none}
+    a[href^="http"]::after{content:" (" attr(href) ")";font-size:8pt;color:#666;word-break:break-all}
+    a[href^="tel"]::after,a[href^="mailto"]::after,a[href^="#"]::after{content:none}
     .sg,.cg2,.metrics,.pricing-grid,.process-grid,.testimonials-grid{gap:8px}
     .sg{grid-template-columns:repeat(2,1fr)}
     .cg2{grid-template-columns:1fr}
